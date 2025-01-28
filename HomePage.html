@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Violation Report Portal</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background: #fdf9ff;
+            color: #333;
+            overflow-x: hidden;
+        }
+        header {
+            background: linear-gradient(to right, #ff8c94, #ffb6c1, #f9f8d4);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 0.5rem;
+        }
+        header p {
+            font-size: 1.2rem;
+            font-weight: 300;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: linear-gradient(to right, #ffa69e, #861657);
+            padding: 0.8rem;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+        nav a:hover {
+            background: #ff8c94;
+            transform: scale(1.1);
+        }
+        .hero {
+            text-align: center;
+            padding: 3rem 1rem;
+            background: linear-gradient(135deg, #e8dff5, #fcd6d6);
+        }
+        .hero h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #b83b5e;
+        }
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+        .hero .cta-btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(to right, #ff6363, #ffb199);
+            color: white;
+            font-size: 1rem;
+            border-radius: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .hero .cta-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 2rem 1rem;
+            background: linear-gradient(120deg, #ffe6e6, #f7d9f0);
+        }
+        .feature {
+            flex: 0 1 30%;
+            background: linear-gradient(to right, #ffd3ba, #ff8c94);
+            margin: 1rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .feature h3 {
+            font-size: 1.5rem;
+            color: #ff616d;
+            margin-bottom: 1rem;
+        }
+        .feature p {
+            color: #444;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        .about {
+            background: linear-gradient(to right, #ffe6f0, #e7d1ff);
+            color: #333;
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+        .about h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .about p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        footer {
+            text-align: center;
+            background: linear-gradient(to right, #ff617d, #ff917e);
+            color: white;
+            padding: 1rem 0;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 768px) {
+            .feature {
+                flex: 0 1 100%;
+                margin-bottom: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <h1>Traffic Violation Report Portal</h1>
+        <p>Empowering citizens to create safer roads for everyone</p>
+    </header>
+    
+    <!-- Navigation Bar -->
+    <nav>
+        <a href="report.html">Report Violation</a>
+        <a href="view.html">View Violations</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact Us</a>
+        <a href="admin.html">Admin Login</a>
+    </nav>
+    
+    <!-- Hero Section -->
+    <div class="hero">
+        <h2>Take a Step Toward Safer Roads</h2>
+        <p>Report violations, track reports, and contribute to a safer environment for all. Together, let's ensure responsible road behavior.</p>
+        <a href="report.html" class="cta-btn">Report Now</a>
+    </div>
+    
+    <!-- Features Section -->
+    <section class="features">
+        <div class="feature">
+            <h3>Simple Reporting</h3>
+            <p>Fill out an easy-to-use form to report traffic violations and submit evidence.</p>
+        </div>
+        <div class="feature">
+            <h3>Track Violations</h3>
+            <p>Keep track of your submitted reports and monitor their status online.</p>
+        </div>
+        <div class="feature">
+            <h3>Secure & Reliable</h3>
+            <p>We ensure all data is handled securely, keeping your privacy protected.</p>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section class="about">
+        <h2>About Us</h2>
+        <p>
+            At the Traffic Violation Report Portal, our mission is to empower citizens to take action against traffic violations. 
+            By reporting and tracking violations, we aim to create safer roads, encourage responsible behavior, and assist authorities in enforcing traffic laws effectively.
+        </p>
+    </section>
+    
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2025 Traffic Violation Report Portal. All rights reserved.</p>
+    </footer>
+</body>
+</html>
