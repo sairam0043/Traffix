@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Violation Report Status</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            background-image: url("img.jpg");
+        }
+        .container {
+            width: 50%;
+            margin: 100px auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+        }
+        input {
+            padding: 10px;
+            width: 80%;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color:yellow;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        #statusMessage {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Check Traffic Violation Report Status</h2>
+        <input type="text" id="reportId" placeholder="Enter Report ID">
+        <button onclick="checkReportStatus()">Check Status</button>
+        <p id="statusMessage"></p>
+    </div>
+
+    <script>
+        function checkReportStatus() {
+            let reportId = document.getElementById("reportId").value;
+            let statusMessage = document.getElementById("statusMessage");
+
+            if (reportId.trim() === "") {
+                statusMessage.innerHTML = "Please enter a valid Report ID.";
+                statusMessage.style.color = "red";
+                return;
+            }
+
+            // Simulating an API endpoint for checking status
+            let apiUrl = `https://trafficportal.example.com/api/report/status/${reportId}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status) {
+                        statusMessage.innerHTML = `Report ID: ${reportId} <br> Status: ${data.status}`;
+                        statusMessage.style.color = "green";
+                    } else {
+                        statusMessage.innerHTML = "Invalid Report ID. Please check again.";
+                        statusMessage.style.color = "red";
+                    }
+                })
+                .catch(error => {
+                    statusMessage.innerHTML = "Error fetching report status. Please try again later.";
+                    statusMessage.style.color = "red";
+                });
+        }
+    </script>
+
+</body>
+</html>
