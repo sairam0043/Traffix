@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Violation - TrafficWatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>TrafficWatch</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="btn-login">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="container">
+            <h1>Report a Violation</h1>
+            <p>Help us improve road safety by reporting traffic violations.</p>
+        </div>
+    </header>
+
+    <section class="container">
+        <h2>Violation Details</h2>
+        <form>
+            <label for="location">Location:</label>
+            <input type="text" id="location" required>
+            
+            <label for="date">Date & Time:</label>
+            <input type="datetime-local" id="date" required>
+
+            <label for="description">Description:</label>
+            <textarea id="description" rows="5" required></textarea>
+
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image">
+
+            <button type="submit">Submit Report</button>
+        </form>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TrafficWatch. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
