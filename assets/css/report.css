@@ -1,4 +1,4 @@
-body { font-family: Arial, sans-serif; margin: 20px; background: url('reportbg.jpg') no-repeat center center fixed; }
+body { font-family: Arial, sans-serif; margin: 20px; background: url('report.webp') no-repeat center center/cover; }
 form { max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 25px; background-color: white;}
 label { font-weight: bold; display: block; margin-top: 10px; }
 input, textarea, button { width: 100%; padding: 8px; margin-top: 5px;}
