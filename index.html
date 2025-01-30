@@ -10,14 +10,29 @@
       padding: 0;
       box-sizing: border-box;
     }
+    .traffic-light-container {
+      width: 100px; /* You can adjust the width as needed */
+      height: 150px; /* Set the height to your desired value */
+      overflow: hidden; /* Ensures the image doesn't overflow the container */
+    }
+
+     .traffic-light {
+       width: 100%; /* Makes the image width 100% of the div's width */
+       height: auto; /* Keeps the image's aspect ratio intact */
+    }
+
 
     body {
       font-family: 'Arial', sans-serif;
-      background-color: #f8f9fa;
+      background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
 
     nav {
-      background-color: #343a40;
+      background-color: #98c746;
       color: white;
       display: flex;
       justify-content: space-between;
@@ -45,7 +60,7 @@
     }
 
     .login-btn {
-      background-color: #007bff;
+      background-color: #556b2f;
       color: white;
       padding: 0.5rem 1rem;
       border: none;
@@ -54,14 +69,19 @@
     }
 
     .login-btn:hover {
-      background-color: #0056b3;
+      background-color: #6e8b3d;
     }
 
     .logo-section {
       display: flex;
       align-items: center;
       padding: 2rem;
-      background-color: #ffffff;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
 
     .logo-section img {
@@ -72,13 +92,19 @@
 
     .logo-section h2 {
       font-size: 2rem;
-      color: #343a40;
+      color: #556b2f;
     }
 
     .hero-section {
       text-align: center;
       padding: 4rem 2rem;
-      background-color: #e9ecef;
+      animation: slideIn 1.5s ease-out;
+      flex-grow: 1;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-100%); }
+      to { transform: translateY(0); }
     }
 
     .hero-section h1 {
@@ -90,6 +116,32 @@
       margin-top: 1rem;
       font-size: 1.25rem;
       color: #6c757d;
+    }
+
+    .footer {
+      background-color: #b0dd61;
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      margin-top: auto;
+    }
+
+    .traffic-light {
+      position: absolute;
+      top: 20%;
+      right: 5%;
+      width: 100px;
+      height: 300px;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.3;
+      }
     }
   </style>
 </head>
@@ -110,7 +162,15 @@
 
   <section class="hero-section">
     <h1>Welcome to Traffic Violation Reporting System</h1>
-    <p>Easily report traffic violations and help make the roads safer for everyone.</p>
+    <p>Report violations and help maintain road safety.</p>
   </section>
+   
+  <div class="traffic-light-container">
+    <img class="traffic-light" src="trafficlight1.jpeg" alt="Traffic Light">
+  </div>
+    <footer class="footer">
+    &copy; 2025 Traffic Trackers. All rights reserved.<br>
+    <a href =# >Do's & Dont's</a>
+  </footer>
 </body>
 </html>
