@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Violation Report Status</title>
+    <link rel="stylesheet" href="/assets/css/reportid.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Check Traffic Violation Report Status</h2>
+        <input type="text" id="reportId" placeholder="Enter Report ID">
+        <button onclick="checkReportStatus()">Check Status</button>
+        <p id="statusMessage"></p>
+    </div>
+
+    <script>
+        function checkReportStatus() {
+            let reportId = document.getElementById("reportId").value;
+            let statusMessage = document.getElementById("statusMessage");
+
+            if (reportId.trim() === "") {
+                statusMessage.innerHTML = "Please enter a valid Report ID.";
+                statusMessage.style.color = "red";
+                return;
+            }
+
+            // Simulating an API endpoint for checking status
+            let apiUrl = `https://trafficportal.example.com/api/report/status/${reportId}`;
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status) {
+                        statusMessage.innerHTML = `Report ID: ${reportId} <br> Status: ${data.status}`;
+                        statusMessage.style.color = "green";
+                    } else {
+                        statusMessage.innerHTML = "Invalid Report ID. Please check again.";
+                        statusMessage.style.color = "red";
+                    }
+                })
+                .catch(error => {
+                    statusMessage.innerHTML = "Error fetching report status. Please try again later.";
+                    statusMessage.style.color = "red";
+                });
+        }
+    </script>
+
+</body>
+</html>
