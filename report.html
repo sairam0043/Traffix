@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Page</title>
+    <link rel="stylesheet" href="/assets/css/report.css">
+    
+</head>
+<body>
+    <h2>Report an Incident</h2>
+    <form action="/submit-report" method="post" enctype="multipart/form-data">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+        <label for ="place">Place:</label>
+        <input type="text" id="place" name="place" required>
+        
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required placeholder="Search for a location">
+        <img src="/assets/css/map.jpg" id="map-icon" onclick="openMapPage()" />
+        
+        <div id="map"></div>
+        
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        
+        <label for="proof">Upload Proof (Image/Video):</label>
+        <input type="file" id="proof" name="proof" accept="image/*,video/*" multiple required>
+        
+        <button type="submit">Submit Report</button>
+    </form>
+
+    <script>
+        // Open the map page in a new window when the user clicks the map icon
+        function openMapPage() {
+            window.open("select.html", "_blank", "width=800, height=600");
+        }
+    </script>
+</body>
+</html>

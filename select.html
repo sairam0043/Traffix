@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Place</title>
+    <link rel="stylesheet" href="/assets/css/select.css">
+    
+</head>
+<body>
+    <h2>Select Location on the Map</h2>
+    <div id="map"></div>
+    <button onclick="selectLocation()">Select This Location</button>
+
+    <script>
+        var selectedLatLng;
+
+        // Initialize map
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 8
+            });
+
+            var marker = new google.maps.Marker({
+                position: { lat: 16.789031425666327, lng:80.84866527264171},
+                map: map,
+                draggable: true
+            });
+
+            // Handle click on the map to place the marker
+            map.addListener('click', function(event) {
+                marker.setPosition(event.latLng);
+                selectedLatLng = event.latLng;
+            });
+
+            // Handle marker dragging
+            google.maps.event.addListener(marker, 'position_changed', function() {
+                selectedLatLng = marker.getPosition();
+            });
+        }
+
+        // Return selected place to parent page
+        function selectLocation() {
+            if (selectedLatLng) {
+                // Return the selected latitude and longitude to the opener page
+                window.opener.document.getElementById('location').value = selectedLatLng.lat() + ',' + selectedLatLng.lng();
+                window.close(); // Close the map page
+            } else {
+                alert('Please select a location on the map first.');
+            }
+        }
+
+        // Load the Google Maps API
+        function loadScript() {
+            var script = document.createElement('script');
+            script.src = "https://maps.googleapis.com/maps/api/js?callback=initMap";
+
+            script.async = true;
+            script.defer = true;
+            document.body.appendChild(script);
+        }
+
+        loadScript();
+    </script>
+</body>
+</html>
