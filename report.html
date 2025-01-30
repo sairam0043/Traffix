@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-image: url("image.jpg"); }
+        form { max-width: 500px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 25px; background-color: white;}
+        label { font-weight: bold; display: block; margin-top: 10px; }
+        input, textarea, button { width: 100%; padding: 8px; margin-top: 5px;}
+        button { background-color: #28a745; color: white; border: none; cursor: pointer; border-radius: 25px; }
+        button:hover { background-color: #218838; }
+        #map-icon { cursor: pointer; width: 20px; height: 20px; margin-left: 10px; vertical-align: middle; }
+    </style>
+</head>
+<body>
+    <h2>Report an Incident</h2>
+    <form action="/submit-report" method="post" enctype="multipart/form-data">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
+        <label for ="place">Place:</label>
+        <input type="text" id="place" name="place" required>
+        
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required placeholder="Search for a location">
+        <img src="map.jpg" id="map-icon" onclick="openMapPage()" />
+        
+        <div id="map"></div>
+        
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+        
+        <label for="proof">Upload Proof (Image/Video):</label>
+        <input type="file" id="proof" name="proof" accept="image/*,video/*" multiple required>
+        
+        <button type="submit">Submit Report</button>
+    </form>
+
+    <script>
+        // Open the map page in a new window when the user clicks the map icon
+        function openMapPage() {
+            window.open("select.html", "_blank", "width=800, height=600");
+        }
+    </script>
+</body>
+</html>
