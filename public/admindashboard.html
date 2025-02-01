@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/assets/css/admin-dashboard.css">
+</head>
+<body>
+
+  <!-- Admin Dashboard Page -->
+  <div id="admin-dashboard-page" class="page">
+    <header>
+      <h2>Admin Dashboard</h2>
+      <button id="admin-logout">Logout</button>
+    </header>
+
+    <div class="report-table">
+      <h3>Reports Submitted by Users</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Report ID</th>
+            <th>Description</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="report-list">
+          <!-- Reports will be inserted dynamically here -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="/assets/js/admin-dashboard.js"></script>
+</body>
+</html>

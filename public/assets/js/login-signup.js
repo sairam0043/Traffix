@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginPage = document.getElementById("login-page");
     const signupPage = document.getElementById("signup-page");
     const dashboardPage = document.getElementById("dashboard-page");
+    const adminDashboardPage = document.getElementById("admin-dashboard-page");
     const loginForm = document.getElementById("login-form");
     const signupForm = document.getElementById("signup-form");
     const signupLink = document.getElementById("signup-link");
     const loginLink = document.getElementById("login-link");
-    const logoutBtn = document.getElementById("logout-btn");
 
     // Switch to Signup Page
     signupLink.addEventListener("click", (e) => {
@@ -20,6 +20,32 @@ document.addEventListener("DOMContentLoaded", () => {
         e.preventDefault();
         signupPage.classList.add("hidden");
         loginPage.classList.remove("hidden");
+    });
+
+    // Login Form Submission
+    loginForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const email = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        const response = await fetch("http://localhost:5000/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password })
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+            alert(data.message);
+            if (data.role === "user") {
+                window.location.href = "userdashboard.html"; // Redirect to User Dashboard
+            } else if (data.role === "admin") {
+                window.location.href = "admindashboard.html"; // Redirect to Admin Dashboard
+            }
+        } else {
+            alert(data.error);
+        }
     });
 
     // Signup Form Submission
@@ -38,55 +64,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const data = await response.json();
-        showMessage(data.message, response.ok ? 'success' : 'error');
+        alert(data.message);
 
         if (response.ok) {
             signupPage.classList.add("hidden");
             loginPage.classList.remove("hidden");
         }
     });
-
-    // Login Form Submission
-    loginForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-
-        const email = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
-
-        const response = await fetch("http://localhost:5000/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password })
-        });
-
-        const data = await response.json();
-        showMessage(data.message, response.ok ? 'success' : 'error');
-
-        if (response.ok) {
-            loginPage.classList.add("hidden");
-            dashboardPage.classList.remove("hidden");
-        } else {
-            // Handle error (this is already shown with the custom message)
-        }
-    });
-
-    // Logout
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", () => {
-            dashboardPage.classList.add("hidden");
-            loginPage.classList.remove("hidden");
-        });
-    }
-
-    // Show custom message (success or error)
-    function showMessage(message, type) {
-        const alertBox = document.createElement("div");
-        alertBox.classList.add("custom-alert", type);
-        alertBox.innerText = message;
-        document.body.appendChild(alertBox);
-
-        setTimeout(() => {
-            alertBox.remove();
-        }, 3000); // Remove message after 3 seconds
-    }
 });
