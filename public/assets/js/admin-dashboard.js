@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const adminDashboardPage = document.getElementById("admin-dashboard-page");
     const reportList = document.getElementById("report-list");
     const logoutBtn = document.getElementById("admin-logout");
+    const notification = document.createElement("div");
+    notification.classList.add("notification");
+    document.body.appendChild(notification);
 
     // Fetch Reports for Admin
     async function fetchReports() {
@@ -48,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const reportId = event.target.dataset.id;
         const newStatus = event.target.value;
         console.log(`Updated status for report ${reportId} to ${newStatus}`);
-        alert("Report status updated!");
+        showNotification("Report status updated!");
     }
 
     // Delete Report
@@ -57,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const confirmDelete = confirm("Are you sure you want to delete this report?");
         if (confirmDelete) {
             console.log(`Report ${reportId} deleted`);
-            alert("Report deleted!");
+            showNotification("Report deleted!");
             fetchReports(); // Refresh the list
         }
     }
@@ -67,6 +70,15 @@ document.addEventListener("DOMContentLoaded", () => {
         adminDashboardPage.classList.add("hidden");
         document.getElementById("login-page").classList.remove("hidden");
     });
+
+    // Show Notification
+    function showNotification(message) {
+        notification.textContent = message;
+        notification.classList.add("show");
+        setTimeout(() => {
+            notification.classList.remove("show");
+        }, 2000);
+    }
 
     fetchReports(); // Load reports initially
 });

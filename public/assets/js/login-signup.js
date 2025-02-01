@@ -1,12 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
     const loginPage = document.getElementById("login-page");
     const signupPage = document.getElementById("signup-page");
-    const dashboardPage = document.getElementById("dashboard-page");
-    const adminDashboardPage = document.getElementById("admin-dashboard-page");
     const loginForm = document.getElementById("login-form");
     const signupForm = document.getElementById("signup-form");
     const signupLink = document.getElementById("signup-link");
     const loginLink = document.getElementById("login-link");
+
+    // Create a custom notification element
+    const notification = document.createElement("div");
+    notification.classList.add("custom-alert");
+    notification.style.display = "none"; // Hide the notification by default
+    document.body.appendChild(notification);
+
+    // Function to show custom notification
+    function showNotification(message, type = "success") {
+        notification.textContent = message;
+        notification.className = `custom-alert ${type}`; // Add success or error class
+        notification.style.display = "block"; // Show the notification
+        setTimeout(() => {
+            notification.style.display = "none"; // Hide the notification after 2 seconds
+        }, 2000);
+    }
 
     // Switch to Signup Page
     signupLink.addEventListener("click", (e) => {
@@ -37,14 +51,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const data = await response.json();
         if (response.ok) {
-            alert(data.message);
-            if (data.role === "user") {
-                window.location.href = "userdashboard.html"; // Redirect to User Dashboard
-            } else if (data.role === "admin") {
-                window.location.href = "admindashboard.html"; // Redirect to Admin Dashboard
-            }
+            showNotification("Login successful!", "success");
+            setTimeout(() => {
+                if (data.role === "user") {
+                    window.location.href = "userdashboard.html"; // Redirect to User Dashboard
+                } else if (data.role === "admin") {
+                    window.location.href = "admindashboard.html"; // Redirect to Admin Dashboard
+                }
+            }, 2000); // Redirect after 2 seconds
         } else {
-            alert(data.error);
+            showNotification(data.error, "error");
         }
     });
 
@@ -64,11 +80,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const data = await response.json();
-        alert(data.message);
-
         if (response.ok) {
-            signupPage.classList.add("hidden");
-            loginPage.classList.remove("hidden");
+            showNotification("Signup successful! Redirecting to login...", "success");
+            setTimeout(() => {
+                signupPage.classList.add("hidden");
+                loginPage.classList.remove("hidden");
+            }, 2000); // Redirect after 2 seconds
+        } else {
+            showNotification(data.error, "error");
         }
     });
 });
