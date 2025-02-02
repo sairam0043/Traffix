@@ -8,6 +8,9 @@
 </head>
 <body>
 
+    <!-- Small Back Button (Top Left Corner) -->
+    <button onclick="goBack()" class="back-button">⬅</button>
+
     <div class="container">
         <h2>Check Traffic Violation Report Status</h2>
         <input type="text" id="reportId" placeholder="Enter Report ID">
@@ -15,37 +18,37 @@
         <p id="statusMessage"></p>
     </div>
 
+    <script src="/assets/js/reportid.js"></script>
     <script>
-        function checkReportStatus() {
-            let reportId = document.getElementById("reportId").value;
-            let statusMessage = document.getElementById("statusMessage");
-
-            if (reportId.trim() === "") {
-                statusMessage.innerHTML = "Please enter a valid Report ID.";
-                statusMessage.style.color = "red";
-                return;
-            }
-
-            // Simulating an API endpoint for checking status
-            let apiUrl = `https://trafficportal.example.com/api/report/status/${reportId}`;
-
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status) {
-                        statusMessage.innerHTML = `Report ID: ${reportId} <br> Status: ${data.status}`;
-                        statusMessage.style.color = "green";
-                    } else {
-                        statusMessage.innerHTML = "Invalid Report ID. Please check again.";
-                        statusMessage.style.color = "red";
-                    }
-                })
-                .catch(error => {
-                    statusMessage.innerHTML = "Error fetching report status. Please try again later.";
-                    statusMessage.style.color = "red";
-                });
+        function goBack() {
+            window.location.href = "userdashboard.html"; // Redirects to the User Dashboard
         }
     </script>
+
+    <style>
+        .back-button {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            padding: 5px 10px;
+            font-size: 18px;
+            background-color:  #ebeb0d;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 
 </body>
 </html>

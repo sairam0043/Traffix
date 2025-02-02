@@ -23,14 +23,14 @@
         }
         button {
             padding: 10px 20px;
-            background-color:yellow;
+            background-color:rgb(30, 246, 159);
             color: white;
             border: none;
             border-radius: 15px;
             cursor: pointer;
         }
         button:hover {
-            background-color: #218838;
+            background-color: #efef24;
         }
         #statusMessage {
             margin-top: 20px;
