@@ -58,7 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 } else if (data.role === "admin") {
                     window.location.href = "admindashboard.html"; // Redirect to Admin Dashboard
                 }
+<<<<<<< HEAD
             }, 500); // Redirect after 2 seconds
+=======
+            }, 2000); // Redirect after 2 seconds
+>>>>>>> 47a98d72aa2804868fc072e8742893737a7f314a
         } else {
             showNotification(data.error, "error");
         }
@@ -85,7 +89,11 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 signupPage.classList.add("hidden");
                 loginPage.classList.remove("hidden");
+<<<<<<< HEAD
             }, 1000); // Redirect after 2 seconds
+=======
+            }, 2000); // Redirect after 2 seconds
+>>>>>>> 47a98d72aa2804868fc072e8742893737a7f314a
         } else {
             showNotification(data.error, "error");
         }
