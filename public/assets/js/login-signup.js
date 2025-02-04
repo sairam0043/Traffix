@@ -43,13 +43,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const email = document.getElementById("username").value;
         const password = document.getElementById("password").value;
 
-        const response = await fetch("http://localhost:5000/login", {
+        const response = await fetch("http://localhost:5000/api/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
         });
 
         const data = await response.json();
+        console.log(data);
         if (response.ok) {
             showNotification("Login successful!", "success");
             setTimeout(() => {
@@ -74,7 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const phone = document.getElementById("phone").value;
         const password = document.getElementById("signup-password").value;
 
-        const response = await fetch("http://localhost:5000/signup", {
+        const response = await fetch("http://localhost:5000/api/auth/signup", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ full_name, email, phone, password })

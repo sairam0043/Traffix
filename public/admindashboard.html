@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,7 +13,7 @@
   <div id="admin-dashboard-page" class="page">
     <header>
       <h2>Admin Dashboard</h2>
-      <button id="admin-logout" onclick="window.location.href='index.html';">Logout</button>
+      <button id="admin-logout">Logout</button>
     </header>
 
     <div class="report-table">
@@ -21,8 +22,10 @@
         <thead>
           <tr>
             <th>Report ID</th>
+            <th>Email/Username</th>
             <th>Description</th>
             <th>Location</th>
+            <th>Place (Coordinates)</th>
             <th>Date</th>
             <th>Status</th>
             <th>Actions</th>
@@ -32,6 +35,15 @@
           <!-- Reports will be inserted dynamically here -->
         </tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- Custom Logout Confirmation Modal -->
+  <div id="logout-modal" class="modal">
+    <div class="modal-content">
+      <p>Are you sure you want to logout?</p>
+      <button id="confirm-logout" class="confirm-btn">Yes</button>
+      <button id="cancel-logout" class="cancel-btn">Cancel</button>
     </div>
   </div>
 

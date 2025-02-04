@@ -2,25 +2,34 @@ document.addEventListener("DOMContentLoaded", () => {
     const adminDashboardPage = document.getElementById("admin-dashboard-page");
     const reportList = document.getElementById("report-list");
     const logoutBtn = document.getElementById("admin-logout");
+    const logoutModal = document.getElementById("logout-modal");
+    const confirmLogoutBtn = document.getElementById("confirm-logout");
+    const cancelLogoutBtn = document.getElementById("cancel-logout");
+
     const notification = document.createElement("div");
     notification.classList.add("notification");
     document.body.appendChild(notification);
 
     // Fetch Reports for Admin
     async function fetchReports() {
-        const reports = [
-            { id: 1, description: "Running red light", location: "Main Street", date: "2024-02-01", status: "Pending" },
-            { id: 2, description: "Over speeding", location: "Highway 23", date: "2024-02-02", status: "Pending" }
-        ];
-
+        const res = await fetch("http://localhost:5000/api/reports/admin/reports")
+        .then(response => response.json())  
+        .then(data => {
+            console.log(data);
+        })
+        .catch(error => console.log("Error:", error));
+        const reports = res.json();
+        console.log(reports)
         reportList.innerHTML = ""; // Clear existing rows
 
         reports.forEach(report => {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${report.id}</td>
+                <td>${report.email}</td>
                 <td>${report.description}</td>
                 <td>${report.location}</td>
+                <td>${report.place}</td>
                 <td>${report.date}</td>
                 <td>
                     <select data-id="${report.id}" class="status-dropdown">
@@ -65,20 +74,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Logout Admin
-    logoutBtn.addEventListener("click", () => {
-        adminDashboardPage.classList.add("hidden");
-        document.getElementById("login-page").classList.remove("hidden");
+      // Custom Logout Modal
+      logoutBtn.addEventListener("click", () => {
+        logoutModal.style.display = "block";
     });
 
-    // Show Notification
-    function showNotification(message) {
-        notification.textContent = message;
-        notification.classList.add("show");
-        setTimeout(() => {
-            notification.classList.remove("show");
-        }, 2000);
-    }
+    confirmLogoutBtn.addEventListener("click", () => {
+        window.location.href = 'index.html';
+    });
+
+    cancelLogoutBtn.addEventListener("click", () => {
+        logoutModal.style.display = "none";
+    });
 
     fetchReports(); // Load reports initially
 });

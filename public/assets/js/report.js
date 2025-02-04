@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
             // Send data to backend
-            const response = await fetch("http://localhost:5000/submit-report", {
+            const response = await fetch("http://localhost:5000/api/reports/submit-report", {
                 method: "POST",
                 body: formData,
             });
