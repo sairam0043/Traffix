@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const adminDashboardPage = document.getElementById("admin-dashboard-page");
     const reportList = document.getElementById("report-list");
     const logoutBtn = document.getElementById("admin-logout");
     const logoutModal = document.getElementById("logout-modal");
     const confirmLogoutBtn = document.getElementById("confirm-logout");
     const cancelLogoutBtn = document.getElementById("cancel-logout");
+<<<<<<< HEAD
 
     const notification = document.createElement("div");
     notification.classList.add("notification");
@@ -20,6 +20,16 @@ document.addEventListener("DOMContentLoaded", () => {
         .catch(error => console.log("Error:", error));
         const reports = res.json();
         console.log(reports)
+=======
+
+    // Fetch Reports for Admin
+    async function fetchReports() {
+        const reports = [
+            { id: 1, email: "user1@example.com", description: "Running red light", location: "Main Street", place: "37.7749, -122.4194", date: "2024-02-01", status: "Pending" },
+            { id: 2, email: "user2@example.com", description: "Over speeding", location: "Highway 23", place: "34.0522, -118.2437", date: "2024-02-02", status: "Pending" }
+        ];
+
+>>>>>>> ccffa37c3cf4064dff05460e11c83c232613d739
         reportList.innerHTML = ""; // Clear existing rows
 
         reports.forEach(report => {
@@ -44,17 +54,9 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             reportList.appendChild(row);
         });
-
-        // Event listeners for status change and deletion
-        document.querySelectorAll(".status-dropdown").forEach(select => {
-            select.addEventListener("change", updateReportStatus);
-        });
-
-        document.querySelectorAll(".delete-btn").forEach(button => {
-            button.addEventListener("click", deleteReport);
-        });
     }
 
+<<<<<<< HEAD
     // Update Report Status
     async function updateReportStatus(event) {
         const reportId = event.target.dataset.id;
@@ -76,16 +78,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Custom Logout Modal
       logoutBtn.addEventListener("click", () => {
+=======
+    // Custom Logout Modal
+    logoutBtn.addEventListener("click", () => {
+>>>>>>> ccffa37c3cf4064dff05460e11c83c232613d739
         logoutModal.style.display = "block";
     });
 
     confirmLogoutBtn.addEventListener("click", () => {
         window.location.href = 'index.html';
     });
+<<<<<<< HEAD
+
+    cancelLogoutBtn.addEventListener("click", () => {
+        logoutModal.style.display = "none";
+    });
+=======
+>>>>>>> ccffa37c3cf4064dff05460e11c83c232613d739
 
     cancelLogoutBtn.addEventListener("click", () => {
         logoutModal.style.display = "none";
     });
 
-    fetchReports(); // Load reports initially
+    fetchReports();
 });
