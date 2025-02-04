@@ -1,16 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const adminDashboardPage = document.getElementById("admin-dashboard-page");
     const reportList = document.getElementById("report-list");
     const logoutBtn = document.getElementById("admin-logout");
-    const notification = document.createElement("div");
-    notification.classList.add("notification");
-    document.body.appendChild(notification);
+    const logoutModal = document.getElementById("logout-modal");
+    const confirmLogoutBtn = document.getElementById("confirm-logout");
+    const cancelLogoutBtn = document.getElementById("cancel-logout");
 
     // Fetch Reports for Admin
     async function fetchReports() {
         const reports = [
-            { id: 1, description: "Running red light", location: "Main Street", date: "2024-02-01", status: "Pending" },
-            { id: 2, description: "Over speeding", location: "Highway 23", date: "2024-02-02", status: "Pending" }
+            { id: 1, email: "user1@example.com", description: "Running red light", location: "Main Street", place: "37.7749, -122.4194", date: "2024-02-01", status: "Pending" },
+            { id: 2, email: "user2@example.com", description: "Over speeding", location: "Highway 23", place: "34.0522, -118.2437", date: "2024-02-02", status: "Pending" }
         ];
 
         reportList.innerHTML = ""; // Clear existing rows
@@ -19,8 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td>${report.id}</td>
+                <td>${report.email}</td>
                 <td>${report.description}</td>
                 <td>${report.location}</td>
+                <td>${report.place}</td>
                 <td>${report.date}</td>
                 <td>
                     <select data-id="${report.id}" class="status-dropdown">
@@ -35,50 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
             reportList.appendChild(row);
         });
-
-        // Event listeners for status change and deletion
-        document.querySelectorAll(".status-dropdown").forEach(select => {
-            select.addEventListener("change", updateReportStatus);
-        });
-
-        document.querySelectorAll(".delete-btn").forEach(button => {
-            button.addEventListener("click", deleteReport);
-        });
     }
 
-    // Update Report Status
-    async function updateReportStatus(event) {
-        const reportId = event.target.dataset.id;
-        const newStatus = event.target.value;
-        console.log(`Updated status for report ${reportId} to ${newStatus}`);
-        showNotification("Report status updated!");
-    }
-
-    // Delete Report
-    async function deleteReport(event) {
-        const reportId = event.target.dataset.id;
-        const confirmDelete = confirm("Are you sure you want to delete this report?");
-        if (confirmDelete) {
-            console.log(`Report ${reportId} deleted`);
-            showNotification("Report deleted!");
-            fetchReports(); // Refresh the list
-        }
-    }
-
-    // Logout Admin
+    // Custom Logout Modal
     logoutBtn.addEventListener("click", () => {
-        adminDashboardPage.classList.add("hidden");
-        document.getElementById("login-page").classList.remove("hidden");
+        logoutModal.style.display = "block";
     });
 
-    // Show Notification
-    function showNotification(message) {
-        notification.textContent = message;
-        notification.classList.add("show");
-        setTimeout(() => {
-            notification.classList.remove("show");
-        }, 2000);
-    }
+    confirmLogoutBtn.addEventListener("click", () => {
+        window.location.href = 'index.html';
+    });
 
-    fetchReports(); // Load reports initially
+    cancelLogoutBtn.addEventListener("click", () => {
+        logoutModal.style.display = "none";
+    });
+
+    fetchReports();
 });
