@@ -33,18 +33,21 @@
     <section class="container">
         <h2>Get in Touch</h2>
         <p>If you have any queries, feel free to contact us through the form below.</p>
-        <form>
+         <form id="contactForm">
             <label for="name">Name:</label>
             <input type="text" id="name" required>
-            
+        
             <label for="email">Email:</label>
             <input type="email" id="email" required>
-            
+        
             <label for="message">Message:</label>
             <textarea id="message" rows="5" required></textarea>
-
+        
             <button type="submit">Send Message</button>
         </form>
+        
+        <p id="responseMessage"></p> <!-- To show response message -->
+        
     </section>
 
     <footer>
@@ -52,6 +55,48 @@
             <p>&copy; 2024 TrafficWatch. All rights reserved.</p>
         </div>
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("contactForm").addEventListener("submit", async function (event) {
+                event.preventDefault(); // ✅ Prevent page reload
+        
+                const name = document.getElementById("name").value.trim();
+                const email = document.getElementById("email").value.trim();
+                const message = document.getElementById("message").value.trim();
+                const responseMessage = document.getElementById("responseMessage");
+        
+                if (!name || !email || !message) {
+                    responseMessage.innerText = "❌ All fields are required!";
+                    responseMessage.style.color = "red";
+                    return;
+                }
+        
+                try {
+                    const response = await fetch("http://localhost:5000/api/feedback/submit-feedback", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ name, email, message }),
+                    });
+        
+                    const data = await response.json();
+        
+                    if (data.success) {
+                        responseMessage.innerText = "✅ Message sent successfully!";
+                        responseMessage.style.color = "green";
+                        document.getElementById("contactForm").reset(); // ✅ Clear form after successful submission
+                    } else {
+                        responseMessage.innerText = "❌ Failed to send message.";
+                        responseMessage.style.color = "red";
+                    }
+                } catch (error) {
+                    responseMessage.innerText = "❌ Error connecting to the server.";
+                    responseMessage.style.color = "red";
+                }
+            });
+        });
+        </script>
+        
+        
 
 </body>
 </html>

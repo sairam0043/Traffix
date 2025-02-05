@@ -3,6 +3,8 @@ const cors = require("cors");  // ✅ Import CORS
 const connectDB = require("./config/db");  // ✅ Import database connection
 const authRoutes = require("./routes/authRoutes");
 const reportRoutes = require("./routes/reportRoutes");
+const feedbackRoutes = require("./routes/feedbackRoutes"); // ✅ Import feedback routes
+
 
 const app = express();
 const PORT = 5000;
@@ -19,6 +21,7 @@ connectDB();
 // 🛠️ Routes
 app.use("/api/auth", authRoutes);  // ✅ Changed route structure
 app.use("/api/reports", reportRoutes);
+app.use("/api/feedback", feedbackRoutes);  // ✅ Add feedback route
 
 // 🚀 Start Server
 app.listen(PORT, () => {
