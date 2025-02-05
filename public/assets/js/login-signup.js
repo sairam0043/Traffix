@@ -42,11 +42,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const email = document.getElementById("username").value;
         const password = document.getElementById("password").value;
+        const rememberMe = document.getElementById("remember-me").checked;
 
         const response = await fetch("http://localhost:5000/api/auth/login", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password })
+            body: JSON.stringify({ email, password, rememberMe })
         });
 
         const data = await response.json();
@@ -87,9 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => {
                 signupPage.classList.add("hidden");
                 loginPage.classList.remove("hidden");
-
             }, 1000); // Redirect after 2 seconds
-
         } else {
             showNotification(data.error, "error");
         }
