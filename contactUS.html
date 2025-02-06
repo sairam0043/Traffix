@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - TrafficWatch</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+           background-image: url("https://plus.unsplash.com/premium_photo-1661911626941-2bae2185d92c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            color: #333;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .logo h1 {
+            color: white;
+        }
+
+        .navbar .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar .nav-links a:hover {
+            color: #d4af37;
+        }
+
+        .btn-login {
+            background-color: #d4af37;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .btn-login:hover {
+            background-color: #b8860b;
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            background: linear-gradient(to right, #d1d5db, #6b7280, #374151);
+            text-align: center;
+            padding: 3rem 1rem;
+            color:black;
+        }
+
+        .contact-hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .contact-hero p {
+            font-size: 1.2rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            padding: 3rem 1rem;
+        }
+
+        .contact-form, .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            animation: scale-up-hor-center 0.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0s 1 normal both;
+        }
+
+        /* Animation: Scale Up Horizontal */
+        @keyframes scale-up-hor-center {
+            0% {
+                transform: scaleX(0.4);
+            }
+            100% {
+                transform: scaleX(1);
+            }
+        }
+
+        /* Form Styling */
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            display: block;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.75rem;
+            background: #d4af37;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #b8860b;
+        }
+
+        /* Contact Info */
+        .contact-info p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-info i {
+            margin-right: 10px;
+            color: #d4af37;
+        }
+
+        /* Map */
+        .map-container {
+            margin-top: 1rem;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            border: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-section {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <h1>TrafficWatch</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="login.html" class="btn-login">Login</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="contact-hero">
+        <h1>Contact TrafficWatch</h1>
+        <p>Have a question or need support? Reach out to us.</p>
+    </div>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+            <form action="#" method="POST">
+                <div class="input-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Send Message</button>
+            </form>
+        </div>
+
+        <div class="contact-info">
+            <h2>Contact Information</h2>
+            <p><i class="fas fa-map-marker-alt"></i><strong> Address:</strong> 123 Traffic Lane, City, Country</p>
+            <p><i class="fas fa-phone"></i><strong> Phone:</strong> +123 456 7890</p>
+            <p><i class="fas fa-envelope"></i><strong> Email:</strong> support@trafficwatch.com</p>
+            <p><i class="fas fa-clock"></i><strong> Working Hours:</strong> Mon-Fri: 9 AM - 6 PM</p>
+            <div class="map-container">
+                <!-- Replace src with your Google Maps embed link -->
+                <iframe src="https://www.google.com/maps/embed?pb=..." allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 TrafficWatch. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
