@@ -5,69 +5,104 @@ document.addEventListener("DOMContentLoaded", () => {
     const signupForm = document.getElementById("signup-form");
     const signupLink = document.getElementById("signup-link");
     const loginLink = document.getElementById("login-link");
+    const rememberMeCheckbox = document.getElementById("remember-me");
 
-    // Create a custom notification element
+    // 🌟 Mobile Navigation Toggle
+    const hamburger = document.querySelector(".hamburger");
+    const navLinks = document.querySelector(".nav-links");
+
+    if (hamburger) {
+        hamburger.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+            hamburger.classList.toggle("toggle");
+        });
+    }
+
+    // 🌟 Create Custom Notification Element
     const notification = document.createElement("div");
     notification.classList.add("custom-alert");
-    notification.style.display = "none"; // Hide the notification by default
+    notification.style.display = "none"; // Hide initially
     document.body.appendChild(notification);
 
-    // Function to show custom notification
+    // 🌟 Function to Show Custom Notification
     function showNotification(message, type = "success") {
         notification.textContent = message;
-        notification.className = `custom-alert ${type}`; // Add success or error class
-        notification.style.display = "block"; // Show the notification
+        notification.className = `custom-alert ${type}`;
+        notification.style.display = "block";
         setTimeout(() => {
-            notification.style.display = "none"; // Hide the notification after 2 seconds
+            notification.style.display = "none";
         }, 2000);
     }
 
-    // Switch to Signup Page
+    // 🌟 Switch to Signup Page
     signupLink.addEventListener("click", (e) => {
         e.preventDefault();
         loginPage.classList.add("hidden");
         signupPage.classList.remove("hidden");
     });
 
-    // Switch to Login Page
+    // 🌟 Switch to Login Page
     loginLink.addEventListener("click", (e) => {
         e.preventDefault();
         signupPage.classList.add("hidden");
         loginPage.classList.remove("hidden");
     });
 
-    // Login Form Submission
+    // 🌟 Handle "Remember Me" Functionality
+    function saveLogin(email) {
+        localStorage.setItem("rememberedUser", email);
+    }
+
+    function getSavedLogin() {
+        return localStorage.getItem("rememberedUser");
+    }
+
+    function removeSavedLogin() {
+        localStorage.removeItem("rememberedUser");
+    }
+
+    // 🌟 Autofill Saved Login if "Remember Me" was checked
+    window.onload = () => {
+        const savedEmail = getSavedLogin();
+        if (savedEmail) {
+            document.getElementById("username").value = savedEmail;
+            rememberMeCheckbox.checked = true;
+        }
+    };
+
+    // 🌟 Login Form Submission
     loginForm.addEventListener("submit", async (e) => {
         e.preventDefault();
-
+    
         const email = document.getElementById("username").value;
         const password = document.getElementById("password").value;
-        const rememberMe = document.getElementById("remember-me").checked;
-
-        const response = await fetch("http://localhost:5000/api/auth/login", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ email, password, rememberMe })
-        });
-
-        const data = await response.json();
-        console.log(data);
-        if (response.ok) {
-            showNotification("Login successful!", "success");
-            setTimeout(() => {
-                if (data.role === "user") {
-                    window.location.href = "userdashboard.html"; // Redirect to User Dashboard
-                } else if (data.role === "admin") {
-                    window.location.href = "admindashboard.html"; // Redirect to Admin Dashboard
-                }
-            }, 500); // Redirect after 2 seconds
-
-        } else {
-            showNotification(data.error, "error");
+    
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ email, password })
+            });
+    
+            const data = await response.json();
+            if (response.ok) {
+                localStorage.setItem("isLoggedIn", "true");
+                localStorage.setItem("userEmail", email); // Save user email
+                localStorage.setItem("userRole", data.role);
+    
+                showNotification("Login successful!", "success");
+                setTimeout(() => {
+                    window.location.href = data.role === "admin" ? "admindashboard.html" : "userdashboard.html";
+                }, 500);
+            } else {
+                showNotification(data.error, "error");
+            }
+        } catch (error) {
+            showNotification("Login failed. Please try again.", "error");
         }
     });
-
-    // Signup Form Submission
+    
+    // 🌟 Signup Form Submission
     signupForm.addEventListener("submit", async (e) => {
         e.preventDefault();
 
@@ -83,14 +118,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         const data = await response.json();
+
         if (response.ok) {
             showNotification("Signup successful! Redirecting to login...", "success");
             setTimeout(() => {
                 signupPage.classList.add("hidden");
                 loginPage.classList.remove("hidden");
-            }, 1000); // Redirect after 2 seconds
+            }, 1000);
         } else {
             showNotification(data.error, "error");
         }
+    });
+
+    // 🌟 Smooth Scrolling for Navigation Links
+    document.querySelectorAll(".nav-links a").forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            if (this.getAttribute("href").startsWith("#")) {
+                e.preventDefault();
+                const targetId = this.getAttribute("href").substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: "smooth",
+                    });
+                }
+            }
+        });
     });
 });
