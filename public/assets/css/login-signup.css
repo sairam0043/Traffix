@@ -111,7 +111,7 @@ button:hover {
 }
 
 /* Dashboard Page */
-header {
+/* header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -122,31 +122,21 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-}
+} */
 
-.profile-icon img {
+/* .profile-icon img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-}
+} */
 
-#logout-btn {
-  background-color: #FFFFFF;
-  color: #e6b800;
-  padding: 4px 8px; /* Reduced padding */
-  width: 80px; /* Fixed width */
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 12px; /* Smaller font size */
-  border: 1px solid #e6b800; /* Optional: Add a border for better visibility */
-  text-align: center; /* Center the text inside the button */
-}
 
-#logout-btn:hover {
+
+
+/* #logout-btn:hover {
   background-color: #ffcc33;
   color: #000;
-}
+} */
 
 /* Dashboard Container */
 .dashboard-container {
@@ -236,4 +226,137 @@ header {
   .form-container {
       max-width: 90%;
   }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Navbar */
+.navbar {
+  background-color: #333;
+  color: white;
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.navbar .logo {
+  display: flex;
+}
+
+.navbar .logo h1 {
+  font-size: 1.8rem;
+  color: #fff;
+}
+
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.navbar .nav-links li {
+  margin-left: 2rem;
+}
+
+.navbar .nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+.navbar .nav-links a:hover {
+  color: #ffcc00;
+}
+
+.navbar .btn-login {
+  background-color: #ffcc00;
+  color: #333;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.navbar .btn-login:hover {
+  background-color: #e6b800;
+}
+
+/* Hamburger Menu (for mobile view) */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 20px;
+  width: 30px;
+}
+
+.hamburger span {
+  height: 4px;
+  width: 100%;
+  background-color: white;
+  border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+  .navbar .nav-links {
+      display: none;
+  }
+
+  .hamburger {
+      display: block;
+  }
+
+  .navbar .nav-links.active {
+      display: flex;
+      flex-direction: column;
+      position: absolute;
+      top: 60px;
+      right: 0;
+      background-color: #333;
+      padding: 1rem;
+      width: 100%;
+  }
+
+  .navbar .nav-links li {
+      margin: 1rem 0;
+  }
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.animate-fade-in-delay {
+  animation: fadeIn 1.5s ease-in-out;
 }

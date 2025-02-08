@@ -5,11 +5,164 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Dashboard</title>
   <link rel="stylesheet" href="/assets/css/userdashboard.css">
+  <link rel="stylesheet" href="/assets/css/login-signup.css">
+  <link rel="stylesheet" href="./assets/css/navbar.css">
+  <style>
+/* Ensure full height of the page */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ensure dashboard-page takes up full space */
+#dashboard-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Content should stretch to push footer down */
+.dashboard-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+/* Sticky footer at the bottom */
+footer {
+    width: 100%;
+    background-color: #333;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto; /* Ensures it moves to bottom */
+}
+
+
+  /* Custom Logout Confirmation Modal */
+  .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+  }
+  
+  .modal-content p {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: black;
+  }
+  
+  .confirm-btn, .cancel-btn {
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+  }
+  
+  .confirm-btn {
+      background-color: #28a745;
+      color: white;
+  }
+  
+  .confirm-btn:hover {
+      background-color: #218838;
+  }
+  
+  .cancel-btn {
+      background-color: #dc3545;
+      color: white;
+  }
+  
+  .cancel-btn:hover {
+      background-color: #c82333;
+  }
+  
+.modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      text-align: center;
+  }
+  
+  .modal-content p {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: black;
+  }
+  
+  .confirm-btn, .cancel-btn {
+      padding: 10px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+  }
+  
+  .confirm-btn {
+      background-color: #28a745;
+      color: white;
+  }
+  
+  .confirm-btn:hover {
+      background-color: #218838;
+  }
+  
+  .cancel-btn {
+      background-color: #dc3545;
+      color: white;
+  }
+  
+  .cancel-btn:hover {
+      background-color: #c82333;
+  }
+   </style>
 </head>
 <body>
   <!-- User Dashboard Page -->
   <div id="dashboard-page" class="page">
     <header>
+      <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.jpeg" width="40px" height="40px" />
+                <h1>TrafficWatch</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a id="admin-logout" class="btn-login">Log Out</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
       <div class="profile-icon">
         <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Profile Icon">
       </div>
@@ -30,6 +183,71 @@
     </div>
   </div>
 
+  <!-- Custom Logout Confirmation Modal -->
+  <div id="logout-modal" class="modal">
+    <div class="modal-content">
+      <p>Are you sure you want to logout?</p>
+      <button id="confirm-logout" class="confirm-btn">Yes</button>
+      <button id="cancel-logout" class="cancel-btn">Cancel</button>
+    </div>
+  </div>
+
+  <script>
+    const logoutBtn = document.getElementById("admin-logout");
+    const logoutModal = document.getElementById("logout-modal");
+    const confirmLogoutBtn = document.getElementById("confirm-logout");
+    const cancelLogoutBtn = document.getElementById("cancel-logout");
+
+    const notification = document.createElement("div");
+    notification.classList.add("notification");
+    document.body.appendChild(notification);
+
+    // Custom Logout Modal
+      logoutBtn.addEventListener("click", () => {
+
+      logoutModal.style.display = "block";
+      });
+
+      confirmLogoutBtn.addEventListener("click", () => {
+      window.location.href = 'index.html';
+      });
+
+
+      cancelLogoutBtn.addEventListener("click", () => {
+      logoutModal.style.display = "none";
+      });
+  </script>
+
+
   <script src="/assets/js/dashboard.js"></script>
+  <!-- Footer -->
+<footer>
+  <div class="container">
+      <div class="footer-content">
+          <div class="footer-section">
+              <h3>TrafficWatch</h3>
+              <p>Making our roads safer, one report at a time.</p>
+          </div>
+          <div class="footer-section">
+              <h3>Quick Links</h3>
+              <ul>
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  <li><a href="privacy.html">Privacy Policy</a></li>
+                  <li><a href="terms.html">Terms of Service</a></li>
+              </ul>
+          </div>
+          <div class="footer-section">
+              <h3>Contact Us</h3>
+              <p>Email: info@trafficwatch.com</p>
+              <p>Phone: (555) 123-4567</p>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p>&copy; 2024 TrafficWatch. All rights reserved.</p>
+      </div>
+  </div>
+</footer>
+
 </body>
 </html>

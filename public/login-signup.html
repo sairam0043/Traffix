@@ -5,6 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Traffic Violation Portal - Login/Signup</title>
   <link rel="stylesheet" href="/assets/css/login-signup.css">
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        fetch('navbar.html')
+            .then(response => response.text())
+            .then(data => {
+                document.querySelector('body').insertAdjacentHTML('afterbegin', data);
+            });
+    });
+  </script>
 </head>
 <body>
   <!-- Login Page -->
@@ -52,5 +62,6 @@
   </div>
 
   <script src="/assets/js/login-signup.js"></script>
+  
 </body>
 </html>

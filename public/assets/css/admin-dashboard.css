@@ -40,14 +40,18 @@ body::before {
 .hidden {
     display: none;
 }
-
-/* Report Table */
+/*report table */
 .report-table {
-    margin-top: 20px;
-    background: rgba(255, 255, 255, 0.95);
+    margin: 20px auto; /* Centers the table horizontally */
+    background: rgba(255, 255, 255, 0);
     padding: 20px;
     border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content inside the div */
 }
+
 
 table {
     width: 100%;
@@ -158,4 +162,117 @@ tr:nth-child(even) td {
 
 .cancel-btn:hover {
     background-color: #c82333;
+}
+
+/* Custom Alert Box */
+.custom-alert {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    z-index: 1000;
+}
+
+.alert-content p {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: black;
+}
+
+.alert-ok-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.alert-ok-btn:hover {
+    background-color: #218838;
+}
+/* Custom Delete Confirmation Modal */
+.custom-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    z-index: 2000; /* Ensure it appears above other elements */
+    width: 320px;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Dark overlay to highlight the modal */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 1999; /* Ensures it is behind the modal */
+}
+
+/* Confirmation modal text */
+.custom-modal p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: black;
+}
+
+/* Buttons inside modal */
+.confirm-btn, .cancel-btn {
+    padding: 10px 15px;
+    margin: 10px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.confirm-btn {
+    background-color: #dc3545; /* Red for delete */
+    color: white;
+}
+
+.confirm-btn:hover {
+    background-color: #c82333;
+}
+
+.cancel-btn {
+    background-color: #6c757d; /* Grey for cancel */
+    color: white;
+}
+
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -60%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
 }

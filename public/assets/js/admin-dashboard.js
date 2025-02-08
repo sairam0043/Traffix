@@ -17,8 +17,60 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // ✅ Custom Notification System
     function showNotification(message) {
-        alert(message);
+        const alertBox = document.getElementById("custom-alert");
+        const alertMessage = document.getElementById("alert-message");
+        const alertOkBtn = document.getElementById("alert-ok-btn");
+    
+        alertMessage.textContent = message;
+        alertBox.style.display = "block";
+    
+        alertOkBtn.onclick = () => {
+            alertBox.style.display = "none";
+        };
     }
+
+    let deleteReportId = null; // Store report ID for deletion
+
+    function showDeleteConfirmation(reportId) {
+        deleteReportId = reportId;
+        document.getElementById("delete-modal").style.display = "block";
+        document.getElementById("modal-overlay").style.display = "block"; // Show overlay
+    }
+    
+    function closeDeleteConfirmation() {
+        document.getElementById("delete-modal").style.display = "none";
+        document.getElementById("modal-overlay").style.display = "none"; // Hide overlay
+    }
+    
+    // Handle Confirm Delete Button Click
+    document.getElementById("confirm-delete").addEventListener("click", async () => {
+        if (!deleteReportId) return;
+    
+        try {
+            const response = await fetch(`http://localhost:5000/api/reports/admin/reports/${deleteReportId}`, {
+                method: "DELETE"
+            });
+    
+            if (response.ok) {
+                showNotification("Report deleted successfully!");
+                fetchReports(); // Refresh the list
+            } else {
+                showNotification("Failed to delete report.");
+            }
+        } catch (error) {
+            console.error("Error deleting report:", error);
+        }
+    
+        closeDeleteConfirmation(); // Hide modal after deletion
+    });
+    
+    // Handle Cancel Button Click
+    document.getElementById("cancel-delete").addEventListener("click", closeDeleteConfirmation);
+    
+    // Hide modal when clicking on the overlay
+    document.getElementById("modal-overlay").addEventListener("click", closeDeleteConfirmation);
+    
+    
 
     // ✅ Fetch Reports for Admin
     async function fetchReports() {

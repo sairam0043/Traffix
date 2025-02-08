@@ -5,13 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Report Page</title>
     <link rel="stylesheet" href="/assets/css/report.css">
+    <link rel="stylesheet" href="./assets/css/navbar.css">
+
+    <!-- Insert this before </body> tag -->
+    <style>
+  
+        /* Custom Logout Confirmation Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .modal-content p {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: black;
+        }
+        
+        .confirm-btn, .cancel-btn {
+            padding: 10px 15px;
+            margin: 5px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .confirm-btn {
+            background-color: #28a745;
+            color: white;
+        }
+        
+        .confirm-btn:hover {
+            background-color: #218838;
+        }
+        
+        .cancel-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+        
+        .cancel-btn:hover {
+            background-color: #c82333;
+        }
+         </style>
+
+</head>
 </head>
 <body>
-
+    <header>
+        <nav class="navbar">
+          <div class="container1">
+              <div class="logo">
+                  <img src="logo.jpeg" width="40px" height="40px" />
+                  <h1>TrafficWatch</h1>
+              </div>
+              <ul class="nav-links">
+                  <li><a href="index.html" class="active">Home</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                  <li><a id="admin-logout" class="btn-login">Log Out</a></li>
+              </ul>
+              <div class="hamburger">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+              </div>
+          </div>
+      </nav>
+      </header>
     <!-- Small Back Button (Top Left Corner) -->
     <button onclick="goBack()" class="back-button">⬅</button>
 
-    
+       <!-- Custom Logout Confirmation Modal -->
+  <div id="logout-modal" class="modal">
+    <div class="modal-content">
+      <p>Are you sure you want to logout?</p>
+      <button id="confirm-logout" class="confirm-btn">Yes</button>
+      <button id="cancel-logout" class="cancel-btn">Cancel</button>
+    </div>
+  </div>
+
     <form action="/submit-report" method="post" enctype="multipart/form-data">
         <label for="description">Description:</label>
         <textarea id="description" name="description" rows="4" required></textarea>
@@ -35,15 +118,41 @@
         <button type="submit">Submit Report</button>
     </form>
 
-    <!-- Styled Report ID display -->
-    <div id="report-id-display" style="margin-top: 20px;"></div>
+     <!-- Styled Report ID display -->
+     <div id="report-id-display" style="margin-top: 20px;"></div>
 
-    <script src="/assets/js/report.js"></script>
-    <script>
-        function goBack() {
-            window.location.href = "userdashboard.html"; // Redirects to the User Dashboard
-        }
-    </script>
+     <script src="/assets/js/report.js"></script>
+     <script>
+         function goBack() {
+             window.location.href = "userdashboard.html"; // Redirects to the User Dashboard
+         }
+     </script>
+      <script>
+         const logoutBtn = document.getElementById("admin-logout");
+         const logoutModal = document.getElementById("logout-modal");
+         const confirmLogoutBtn = document.getElementById("confirm-logout");
+         const cancelLogoutBtn = document.getElementById("cancel-logout");
+     
+         const notification = document.createElement("div");
+         notification.classList.add("notification");
+         document.body.appendChild(notification);
+     
+         // Custom Logout Modal
+           logoutBtn.addEventListener("click", () => {
+     
+           logoutModal.style.display = "block";
+           });
+     
+           confirmLogoutBtn.addEventListener("click", () => {
+           window.location.href = 'index.html';
+           });
+     
+     
+           cancelLogoutBtn.addEventListener("click", () => {
+           logoutModal.style.display = "none";
+           });
+       </script>
+ 
 
     <style>
         .back-button {
@@ -69,6 +178,35 @@
             background-color: #0056b3;
         }
     </style>
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>TrafficWatch</h3>
+                <p>Making our roads safer, one report at a time.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="privacy.html">Privacy Policy</a></li>
+                    <li><a href="terms.html">Terms of Service</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p>Email: info@trafficwatch.com</p>
+                <p>Phone: (555) 123-4567</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 TrafficWatch. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
 
 </body>
 </html>
