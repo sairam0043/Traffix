@@ -22,6 +22,8 @@ connectDB();
 app.use("/api/auth", authRoutes);  // ✅ Changed route structure
 app.use("/api/reports", reportRoutes);
 app.use("/api/feedback", feedbackRoutes);  // ✅ Add feedback route
+const forgotPasswordRoutes = require("./routes/forgotPasswordRoutes");
+app.use("/api/password-reset", forgotPasswordRoutes);
 
 // 🚀 Start Server
 app.listen(PORT, () => {
