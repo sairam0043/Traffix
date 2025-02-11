@@ -1,95 +1,365 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - TrafficWatch</title>
-    <link rel="stylesheet" href="/assets/css/about.css">
-    <link rel="stylesheet" href="./assets/css/navbar.css">
-</head>
-<body>
+    <title>About TrafficWatch - Making Roads Safer Together</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <style>
+        :root {
 
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <h1>TrafficWatch</h1>
+            --primary-color: #2C3E50;
+            --secondary-color: #ffc107;
+            --accent-color: #E74C3C;
+            --text-color: #2C3E50;
+            --light-gray: #ECF0F1;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--white);
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .hero {
+            margin-top: 4rem;
+            background: linear-gradient(rgba(44, 62, 80, 0.85), rgba(44, 62, 80, 0.85)),
+                url('https://res.cloudinary.com/darnsorvx/image/upload/v1738778586/d43978-023-00068-x_25343914_udeigp.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .stat-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--secondary-color);
+            opacity: 0.7;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--secondary-color);
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .mission {
+            background: var(--light-gray);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--secondary-color);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .feature-card {
+                padding: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: var(--secondary-color);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scroll-progress"></div>
+    <nav class="navbar" >
+        <div class="nav-content">
+            <a href="#" class="logo">TrafficWatch</a>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#mission">Mission</a>
+                <a href="#contact">Contact</a>
             </div>
-            <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html" class="active">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="login.html" class="btn-login">Login</a></li>
-            </ul>
         </div>
     </nav>
-    <div class="traffic" style="background-color: #d4af37;width:100%;text-align: center;">
+
+    <section class="hero">
+        <h1>Empowering Safer Roads</h1>
+        <p>Join thousands of citizens making a difference in traffic safety through community-driven reporting and real-time monitoring.</p>
+    </section>
+    <section class="mission">
         <div class="container">
-            <h1 class="animate-fade-in">About TrafficWatch</h1>
-            <p class="animate-fade-in-delay">Making our roads safer, one report at a time.</p>
-        </div>
-    </div>
-
-        
-
-    <section class="about-section">
-        <div class="container" style="margin-left:30px; border-radius:30px;">
-            <div class="about-content" style="display: flex;
-        flex-direction: column; 
-        justify-content: center; 
-        color:black;
-        text-align: center;
-        height:200px;
-        align-items: center;
-        padding-right: 20px;
-        min-height:50vh;
-        width: 100%;">
-                <h2 class="animate-slide-up" style="text-align: center;align-items:center;">Our Mission</h2>
-                <p>TrafficWatch is a community-driven platform where citizens can report traffic violations and unsafe driving behavior to authorities.</p>
+            <div class="section-title" data-aos="fade-up">
+                <h2>Our Mission</h2>
+                <p>TrafficWatch is dedicated to revolutionizing road safety through community engagement and technological innovation. We believe in the power of collective action to create safer streets for everyone.</p>
+                <!--<a href="#" class="cta-button">Join Our Initiative</a>-->
             </div>
         </div>
-
-            <div style="margin-left:0px !important">
-                <h2 class="animate-slide-up" style="text-align: center;">How It Works</h2>
-                <ul class="about-list">
-                    <li>📸 <strong>Easy Reporting:</strong> Users can submit violations with images and descriptions.</li>
-                    <li>⚡ <strong>Real-time Processing:</strong> Authorities receive and process the reports instantly.</li>
-                    <li>📊 <strong>Community Insights:</strong> Statistics and updates are shared with the community.</li>
-                </ul>
-                </div>
-            
-        
     </section>
 
-    <!-- Footer -->
-<footer>
     <div class="container">
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>TrafficWatch</h3>
-                <p>Making our roads safer, one report at a time.</p>
+        <div class="section-title" data-aos="fade-up">
+            <h2>Our Impact</h2>
+            <p>Together, we're creating measurable change in road safety across communities.</p>
+        </div>
+
+        <div class="stats-container">
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-number" id="reportsCount">0</div>
+                <p>Violations Reported</p>
             </div>
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="privacy.html">Privacy Policy</a></li>
-                    <li><a href="terms.html">Terms of Service</a></li>
-                </ul>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-number" id="resolvedCount">0</div>
+                <p>Cases Resolved</p>
             </div>
-            <div class="footer-section">
-                <h3>Contact Us</h3>
-                <p>Email: info@trafficwatch.com</p>
-                <p>Phone: (555) 123-4567</p>
+            <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="stat-number" id="communityCount">0</div>
+                <p>Active Citizens</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 TrafficWatch. All rights reserved.</p>
+
+        <div class="section-title" data-aos="fade-up">
+            <h2>Key Features</h2>
+            <p>Innovative tools designed for effective traffic violation reporting and management.</p>
+        </div>
+
+        <div class="features">
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <div class="feature-icon">📱</div>
+                <h3>Streamlined Reporting</h3>
+                <p>Submit detailed reports with our intuitive interface. Attach images, location data, and descriptions securely and efficiently.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <div class="feature-icon">⚡</div>
+                <h3>Instant Processing</h3>
+                <p>Advanced automation ensures your reports reach relevant authorities immediately, enabling swift response to traffic violations.</p>
+            </div>
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="feature-icon">📊</div>
+                <h3>Data-Driven Insights</h3>
+                <p>Access comprehensive analytics and trends to understand traffic safety patterns in your community.</p>
+            </div>
         </div>
     </div>
-</footer>
 
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.scroll-progress').style.width = scrolled + '%';
+        });
+
+        // Animate statistics counter
+        function animateCounter(element, target, duration) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                element.textContent = Math.floor(start).toLocaleString();
+                if (start >= target) {
+                    element.textContent = target.toLocaleString();
+                    clearInterval(timer);
+                }
+            }, 16);
+        }
+
+        // Initialize counters when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounter(document.getElementById('reportsCount'), 25000, 2000);
+                    animateCounter(document.getElementById('resolvedCount'), 21500, 2000);
+                    animateCounter(document.getElementById('communityCount'), 8500, 2000);
+                    observer.disconnect();
+                }
+            });
+        });
+
+        observer.observe(document.querySelector('.stats-container'));
+    </script>
 </body>
+
 </html>
